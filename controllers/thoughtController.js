@@ -4,7 +4,7 @@ const { Thought } = require("../models");
 module.exports = {
   async createThought(req, res) {
     try {
-      const thought = await Thought.create(req.body);
+      const thought = await Thought.create(req.body).select("-__v");
       if (thought) {
         res.status(200).json(thought);
       }
@@ -20,7 +20,7 @@ module.exports = {
         { _id: req.params.thoughtId },
         { $set: req.body },
         { runValidators: true, new: true }
-      );
+      ).select("-__v");
       if (!thought) {
         res.status(404).json({ message: "No Thought with that id" });
       }
@@ -51,6 +51,21 @@ module.exports = {
       }).select("-__v");
       if (!thought) {
         res.status(404).json({ message: "No thought found with this id" });
+      }
+      res.status(200).json(thought);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  //delete a thought
+  async deleteThought(req, res) {
+    try {
+      const thought = await Thought.findOneAndDelete({
+        _id: req.params.thoughtId,
+      }).select("-__v");
+      if (!thought) {
+        res.status(404).json("No thought found with that id");
       }
       res.status(200).json(thought);
     } catch (err) {
