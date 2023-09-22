@@ -1,4 +1,5 @@
 const { User, Thought } = require("../models");
+
 module.exports = {
   //Get all users
   async getUsers(req, res) {
@@ -12,6 +13,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
   //Get a single User
   async getSingleUser(req, res) {
     try {
@@ -24,6 +26,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
   //Create a user
   async createUser(req, res) {
     try {
@@ -50,6 +53,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
   //Delete a user
   async deleteUser(req, res) {
     try {
@@ -59,6 +63,41 @@ module.exports = {
       }
       await Thought.deleteMany({ _id: { $in: user.thoughts } });
       res.status(200).json({ message: "User and thoughts deleted" });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  //Add a friend to a user
+  async createFriend(req, res) {
+    try {
+      const friend = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $addToSet: { friends: req.params.friendId } },
+        { runValidators: true, new: true }
+      );
+      if (!friend) {
+        res.status(404).json({ message: "No user found with this id" });
+      }
+      res.status(200).json(friend);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
+
+  //Remove a friend of user
+  async removeFriend(req, res) {
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $pull: { friends: req.params.friendId } },
+        { runValidators: true, new: true }
+      );
+      if (!user) {
+        res.status(404).json({ message: "No User found with this id" });
+      }
+      res.status(200).json(user);
     } catch (err) {
       res.status(500).json(err);
     }
