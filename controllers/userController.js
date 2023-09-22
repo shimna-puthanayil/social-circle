@@ -9,7 +9,8 @@ module.exports = {
           path: "thoughts",
           select: "-__v",
         })
-        .populate({ path: "friends", select: "-__v" });
+        .populate({ path: "friends", select: "-__v" })
+        .select("-__v");
 
       if (!users) {
         res.status(404).json({ message: "No users found" });
@@ -27,7 +28,8 @@ module.exports = {
         _id: req.params.userId,
       })
         .populate({ path: "thoughts", select: "-__v" })
-        .populate({ path: "friends", select: "-__v" });
+        .populate({ path: "friends", select: "-__v" })
+        .select("-__v");
       if (!singleUser) {
         return req.status(404).json({ message: "User not found" });
       }
