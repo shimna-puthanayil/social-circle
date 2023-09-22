@@ -9,10 +9,9 @@ const {
 // /api/users
 
 router.route("/").get(getUsers).post(createUser);
-// .put(updateUser)
 // .delete(deleteUser);
 
 // /api/users/:userId
-router.route("/:userId").get(getSingleUser);
+router.route("/:userId").get(getSingleUser).put(updateUser);
 
 module.exports = router;
