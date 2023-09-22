@@ -78,7 +78,8 @@ module.exports = {
     try {
       const thoughts = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
-        { $addToSet: { reactions: req.body } }
+        { $addToSet: { reactions: req.body } },
+        { runValidators: true, new: true }
       );
       if (!thoughts) {
         res.status(404).json({ message: "No thought found with this id" });
@@ -92,7 +93,14 @@ module.exports = {
   //Delete a reaction
   async deleteReaction(req, res) {
     try {
-      // const reaction= await React
+      const thoughts = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } }
+      ).select("-__v");
+      if (!thoughts) {
+        res.json(404).json({ message: "Thought not found with this id" });
+      }
+      res.status(200).json(thoughts);
     } catch (err) {
       res.status(500).json(err);
     }
