@@ -8,12 +8,9 @@ const {
 } = require("../../controllers/userController");
 // /api/users
 
-router
-  .route("/")
-  .get(getUsers)
-  .post(createUser)
-  .put(updateUser)
-  .delete(deleteUser);
+router.route("/").get(getUsers).post(createUser);
+// .put(updateUser)
+// .delete(deleteUser);
 
 // /api/users/:userId
 router.route("/:userId").get(getSingleUser);
