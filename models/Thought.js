@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const reactionSchema = require("./Reaction");
+const formattedDate = require("../utils/dateFormat");
 //Schema to create Thought model
 const thoughtSchema = new Schema(
   {
@@ -12,13 +13,7 @@ const thoughtSchema = new Schema(
       type: Date,
       default: Date.now,
       get: function (date) {
-        const yyyy = date.getFullYear();
-        let mm = date.getMonth() + 1; // Months start at 0!
-        let dd = date.getDate() + 1;
-        if (dd < 10) dd = "0" + dd;
-        if (mm < 10) mm = "0" + mm;
-        const formattedDate = dd + "/" + mm + "/" + yyyy;
-        return formattedDate;
+        return formattedDate(date);
       },
     },
     username: {
@@ -30,13 +25,11 @@ const thoughtSchema = new Schema(
   {
     toJSON: {
       getters: true,
+      virtuals: true,
     },
     id: false,
   }
 );
-// function format(createdAt) {
-//   return createdAt.getDate() + createdAt.getMonth() + createdAt.getFullYear();
-// }
 
 // Create a virtual property `reactionCount` that gets the number of reactions associated with a thought
 thoughtSchema
@@ -45,6 +38,7 @@ thoughtSchema
   .get(function () {
     return this.reactions.length;
   });
+
 // Initialize the Thought model
 const Thought = model("thought", thoughtSchema);
 

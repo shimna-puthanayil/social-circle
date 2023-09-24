@@ -2,18 +2,17 @@ const { User, Thought } = require("../models");
 
 module.exports = {
   //Get all users
-  async getUsers(req, res) {
+  async getAllUsers(req, res) {
     try {
       const users = await User.find()
         .populate({
           path: "thoughts",
-          select: "-__v",
+          select: "-__v  -reactions._id",
         })
         .populate({ path: "friends", select: "-__v" })
         .select("-__v");
-
-      if (!users) {
-        res.status(404).json({ message: "No users found" });
+      if (!users.length) {
+        return res.status(404).json({ message: "No users found" });
       }
       res.status(200).json(users);
     } catch (err) {
@@ -27,11 +26,12 @@ module.exports = {
       const singleUser = await User.findOne({
         _id: req.params.userId,
       })
-        .populate({ path: "thoughts", select: "-__v" })
+        .populate({ path: "thoughts", select: "-__v -reactions._id" })
         .populate({ path: "friends", select: "-__v" })
         .select("-__v");
       if (!singleUser) {
-        return req.status(404).json({ message: "User not found" });
+        console.log("not found");
+        return res.status(404).json({ message: "User not found" });
       }
       res.status(200).json(singleUser);
     } catch (err) {
@@ -42,8 +42,10 @@ module.exports = {
   //Create a user
   async createUser(req, res) {
     try {
-      const user = await User.create(req.body).select("-__v");
-      res.json(user);
+      const user = await User.create(req.body);
+      if (user) {
+        res.json(user);
+      }
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
@@ -58,7 +60,7 @@ module.exports = {
         { runValidators: true, new: true }
       ).select("-__v");
       if (!user) {
-        res.status(404).json("User not found");
+        return res.status(404).json({ message: "User not found" });
       }
       res.status(200).json(user);
     } catch (err) {
@@ -73,10 +75,12 @@ module.exports = {
         _id: req.params.userId,
       }).select("-__v");
       if (!user) {
-        res.status(404).json("No User with that id");
+        return res.status(404).json({ message: "No User found with this id" });
       }
       await Thought.deleteMany({ _id: { $in: user.thoughts } });
-      res.status(200).json({ message: "User and thoughts deleted" });
+      res
+        .status(200)
+        .json({ message: "User and associated thoughts are deleted" });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -91,7 +95,7 @@ module.exports = {
         { runValidators: true, new: true }
       ).select("-__v");
       if (!friend) {
-        res.status(404).json({ message: "No user found with this id" });
+        return res.status(404).json({ message: "No user found with this id" });
       }
       res.status(200).json(friend);
     } catch (err) {
@@ -109,9 +113,9 @@ module.exports = {
         { runValidators: true, new: true }
       ).select("-__v");
       if (!user) {
-        res.status(404).json({ message: "No User found with this id" });
+        return res.status(404).json({ message: "No User found with this id" });
       }
-      res.status(200).json(user);
+      res.status(200).json({ message: "Successfully removed friend" });
     } catch (err) {
       res.status(500).json(err);
     }
