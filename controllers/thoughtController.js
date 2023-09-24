@@ -38,9 +38,8 @@ module.exports = {
   //Get all thoughts
   async getAllThoughts(req, res) {
     try {
-      const thoughts = await Thought.find()
-        .select("-__v")
-        .select("-reactions._id");
+      const thoughts = await Thought.find().select("-__v -reactions._id");
+
       if (!thoughts.length) {
         return res.status(404).json({ message: "No thoughts found" });
       }
@@ -55,7 +54,7 @@ module.exports = {
     try {
       const thought = await Thought.findOne({
         _id: req.params.thoughtId,
-      }).select("-__v");
+      }).select("-__v -reactions._id");
       if (!thought) {
         return res
           .status(404)

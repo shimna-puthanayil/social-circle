@@ -4,9 +4,7 @@
 
 ## Description
 
-The project helps to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.
-
-With the help of API Routes the RESTful CRUD operations are performed using these Sequelize models.
+The project helps to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. The application is built using Express.js for routing, a MongoDB database and the Mongoose ODM.
 
 ## Installation
 
@@ -31,7 +29,7 @@ When the application is invoked using 'npm start' then the API server will start
 
 #### Link to walkthrough video :
 
-https://drive.google.com/file/d/1SSw6iVT3xu8O0SwtRgEe9zs_1TJqx-kC/view?usp=sharing
+https://drive.google.com/file/d/1fj5Du7BYgh3xw4GXnsI1PNtm1ZnYfaA1/view
 
 #### API Routes
 
