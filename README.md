@@ -41,9 +41,9 @@ https://drive.google.com/file/d/1G-FvFIqWr-vTPKWlEIuiaoI3vNb6Eo3j/view?usp=shari
 
 <b>/api/users/:userId</b>
 
-     <b>GET</b> a single user by its \_id and populated thought and friend data
-     <b>PUT</b> to update a user by its \_id
-     <b>DELETE</b> to remove user by its \_id
+     <b>GET</b> a single user by its id and populated thought and friend data
+     <b>PUT</b> to update a user by its id
+     <b>DELETE</b> to remove user by its id
 
 <b>/api/users/:userId/friends/:friendId</b>
 
@@ -57,9 +57,9 @@ https://drive.google.com/file/d/1G-FvFIqWr-vTPKWlEIuiaoI3vNb6Eo3j/view?usp=shari
 
 <b>/api/thoughts/:thoughtId</b>
 
-     <b>GET</b> to get a single thought by its \_id
-     <b>PUT</b> to update a thought by its \_id
-     <b>DELETE</b> to remove a thought by its \_id
+     <b>GET</b> to get a single thought by its id
+     <b>PUT</b> to update a thought by its id
+     <b>DELETE</b> to remove a thought by its id
 
 <b>/api/thoughts/:thoughtId/reactions</b>
 
