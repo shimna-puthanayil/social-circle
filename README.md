@@ -29,48 +29,50 @@ When the application is invoked using 'npm start' then the API server will start
 
 #### Link to walkthrough video :
 
-https://drive.google.com/file/d/1fj5Du7BYgh3xw4GXnsI1PNtm1ZnYfaA1/view
+https://drive.google.com/file/d/1G-FvFIqWr-vTPKWlEIuiaoI3vNb6Eo3j/view?usp=sharing
 
 #### API Routes
 
-- **/api/users/**
-  - GET all users
-  - POST a new user
-- **/api/users/:userId**
+**/api/users/**
 
-  - GET a single user by its \_id and populated thought and friend data
-  - PUT to update a user by its \_id
-  - DELETE to remove user by its \_id
+- GET all users
+- POST a new user
 
-- **/api/users/:userId/friends/:friendId**
+**/api/users/:userId**
 
-  - POST to add a new friend to a user's friend list
-  - DELETE to remove a friend from a user's friend list
+- GET a single user by its \_id and populated thought and friend data
+- PUT to update a user by its \_id
+- DELETE to remove user by its \_id
 
-- **/api/thoughts**
+**/api/users/:userId/friends/:friendId**
 
-  - GET to get all thoughts
-  - POST to create a new thought
+- POST to add a new friend to a user's friend list
+- DELETE to remove a friend from a user's friend list
 
-- **/api/thoughts/:thoughtId**
+**/api/thoughts**
 
-  - GET to get a single thought by its \_id
-  - PUT to update a thought by its \_id
-  - DELETE to remove a thought by its \_id
+- GET to get all thoughts
+- POST to create a new thought
 
-- **/api/thoughts/:thoughtId/reactions**
+**/api/thoughts/:thoughtId**
 
-  - POST to create a reaction stored in a single thought's reactions array field
+- GET to get a single thought by its \_id
+- PUT to update a thought by its \_id
+- DELETE to remove a thought by its \_id
 
-- **/api/thoughts/:thoughtId/reactions/:reactionId**
+**/api/thoughts/:thoughtId/reactions**
 
-  - DELETE to pull and remove a reaction by the reaction's reactionId value
+- POST to create a reaction stored in a single thought's reactions array field
+
+**/api/thoughts/:thoughtId/reactions/:reactionId**
+
+- DELETE to pull and remove a reaction by the reaction's reactionId value
 
 The following images show the application's appearance and functionality :
 
 **GET** route to return all the users and thoughts being tested in Insomnia Core:
 
-![LM 1](./assets/images/get.gif)
+![LM 1](./assets/images/getall.gif)
 
 **GET** routes to return a single user and a single thought by its id being tested in Insomnia Core:
 
@@ -78,7 +80,7 @@ The following images show the application's appearance and functionality :
 
 **POST**, **PUT**, and **DELETE** routes for user being tested in Insomnia Core:
 
-![LM 3](./assets/images/user1.gif)
+![LM 3](./assets/images/user.gif)
 
 **POST**, **PUT**, and **DELETE** routes for thought being tested in Insomnia Core:
 
