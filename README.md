@@ -33,64 +33,67 @@ https://drive.google.com/file/d/1G-FvFIqWr-vTPKWlEIuiaoI3vNb6Eo3j/view?usp=shari
 
 #### API Routes
 
-**/api/users/**
+<pre>
+<b>/api/users/</b>
 
-- GET all users
-- POST a new user
+    <b> GET</b> all users
+     <b>POST</b> a new user
 
-**/api/users/:userId**
+<b>/api/users/:userId</b>
 
-- GET a single user by its \_id and populated thought and friend data
-- PUT to update a user by its \_id
-- DELETE to remove user by its \_id
+     <b>GET</b> a single user by its \_id and populated thought and friend data
+     <b>PUT</b> to update a user by its \_id
+     <b>DELETE</b> to remove user by its \_id
 
-**/api/users/:userId/friends/:friendId**
+<b>/api/users/:userId/friends/:friendId</b>
 
-- POST to add a new friend to a user's friend list
-- DELETE to remove a friend from a user's friend list
+     <b>POST</b> to add a new friend to a user's friend list
+     <b>DELETE</b> to remove a friend from a user's friend list
 
-**/api/thoughts**
+<b>/api/thoughts</b>
 
-- GET to get all thoughts
-- POST to create a new thought
+     <b>GET</b> to get all thoughts
+     <b>POST</b> to create a new thought
 
-**/api/thoughts/:thoughtId**
+<b>/api/thoughts/:thoughtId</b>
 
-- GET to get a single thought by its \_id
-- PUT to update a thought by its \_id
-- DELETE to remove a thought by its \_id
+     <b>GET</b> to get a single thought by its \_id
+     <b>PUT</b> to update a thought by its \_id
+     <b>DELETE</b> to remove a thought by its \_id
 
-**/api/thoughts/:thoughtId/reactions**
+<b>/api/thoughts/:thoughtId/reactions</b>
 
-- POST to create a reaction stored in a single thought's reactions array field
+     <b>POST</b> to create a reaction stored in a single thought's reactions 
+     array field
 
-**/api/thoughts/:thoughtId/reactions/:reactionId**
+<b>/api/thoughts/:thoughtId/reactions/:reactionId</b>
 
-- DELETE to pull and remove a reaction by the reaction's reactionId value
+     <b>DELETE</b> to pull and remove a reaction by the reaction's reactionId value
+</pre>
 
 The following images show the application's appearance and functionality :
 
-**GET** route to return all the users and thoughts being tested in Insomnia Core:
+**GET** route to return **All The Users** and **All the Thoughts** being tested in Insomnia Core:
 
 ![LM 1](./assets/images/getall.gif)
 
-**GET** routes to return a single user and a single thought by its id being tested in Insomnia Core:
+**GET** routes to return a **Single User** and a **Single Thought** by its id being tested in Insomnia Core:
 
 ![LM 2](./assets/images/getsingle.gif)
 
-**POST**, **PUT**, and **DELETE** routes for user being tested in Insomnia Core:
+**POST**, **PUT**, and **DELETE** routes for **User** being tested in Insomnia Core:
 
 ![LM 3](./assets/images/user.gif)
 
-**POST**, **PUT**, and **DELETE** routes for thought being tested in Insomnia Core:
+**POST**, **PUT**, and **DELETE** routes for **Thought** being tested in Insomnia Core:
 
 ![LM 4](./assets/images/thought.gif)
 
-**POST** and **DELETE** routes for friends being tested in Insomnia Core:
+**POST** and **DELETE** routes for **Friends** being tested in Insomnia Core:
 
 ![LM 5](./assets/images/friend.gif)
 
-**POST** and **DELETE** routes for reactions being tested in Insomnia Core:
+**POST** and **DELETE** routes for **Reactions** being tested in Insomnia Core:
 
 ![LM 5](./assets/images/reaction.gif)
 
