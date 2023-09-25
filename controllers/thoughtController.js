@@ -1,3 +1,4 @@
+//require models
 const { Thought, reactionSchema, User } = require("../models");
 
 module.exports = {

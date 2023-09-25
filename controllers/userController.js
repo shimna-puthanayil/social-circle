@@ -1,3 +1,4 @@
+//require models
 const { User, Thought } = require("../models");
 
 module.exports = {
@@ -9,7 +10,14 @@ module.exports = {
           path: "thoughts",
           select: "-__v  -reactions._id",
         })
-        .populate({ path: "friends", select: "-__v" })
+        .populate({
+          path: "friends",
+          populate: {
+            path: "thoughts",
+            select: "-__v -reactions._id",
+          },
+          select: "-__v",
+        })
         .select("-__v");
       if (!users.length) {
         return res.status(404).json({ message: "No users found" });
@@ -27,7 +35,11 @@ module.exports = {
         _id: req.params.userId,
       })
         .populate({ path: "thoughts", select: "-__v -reactions._id" })
-        .populate({ path: "friends", select: "-__v" })
+        .populate({
+          path: "friends",
+          populate: { path: "thoughts", select: "-__v" },
+          select: "-__v",
+        })
         .select("-__v");
       if (!singleUser) {
         console.log("not found");
